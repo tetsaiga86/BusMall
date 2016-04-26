@@ -102,27 +102,53 @@ function renderImage(index){
   return '<img src=' + pic[index].path + ' id="' + pic[index].id + '" />';
 }
 
-// var resultsButton = document.getElementById('results-button');
-// var resultsTable = document.getElementById('results-table');
-// resultsButton.addEventListener('click', showResults);
-//
-// function showResults() {
-//   resultsTable.innerHTML = '';
-//   for (var i = 0; i < pic.length; i++) {
-//     showResultRow(i);
-//   }
-// }
-//
-// function showResultRow(rowIndex){
-//   var tr = document.createElement('tr');
-//   var picName = document.createElement('td');
-//   var clicks = document.createElement('td');
-//   var shown = document.createElement('td');
-//   picName.textContent = pic[rowIndex].picName;
-//   clicks.textContent = pic[rowIndex].counterClick;
-//   shown.textContent = pic[rowIndex].counterAppear;
-//   tr.appendChild(picName);
-//   tr.appendChild(clicks);
-//   tr.appendChild(shown);
-//   resultsTable.appendChild(tr);
-// }
+var resultsButton = document.getElementById('results-button');
+var chartContainer = document.getElementById('results');
+
+resultsButton.addEventListener('click', showResults);
+var clicked = [];
+var choice = [];
+
+function showResults() {
+  for (var i = 0; i < pic.length; i++) {
+    clicked.push(pic[i].counterClick);
+    choice.push(pic[i].counterAppear);
+  }
+
+  var canvas = document.createElement('canvas');
+  canvas.setAttribute('id', 'results-chart');
+  chartContainer.appendChild(canvas);
+  console.log(canvas);
+  var ctx = canvas.getContext('2d');
+  console.log(ctx);
+  var data = {
+    labels: names,
+    datasets: [
+      {
+        label: 'Times a choice was picked',
+        backgroundColor: 'rgba(255,99,132,0.2)',
+        borderColor: 'rgba(255,99,132,1)',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        hoverBorderColor: 'rgba(255,99,132,1)',
+        data: clicked
+      },
+      {
+        label: 'Times a choice was given',
+        backgroundColor: 'rgba(54,162,235,0.2)',
+        borderColor: 'rgba(54,162,235,1)',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(54,162,235,0.4)',
+        hoverBorderColor: 'rgba(54,162,235,1)',
+        data: choice
+      }
+    ]
+  };
+  console.log(data);
+  var myBarChart = new Chart(ctx).Bar(data);
+}
+
+var names = [];
+for (var i = 0; i < pic.length; i++) {
+  names.push(pic[i].picName);
+};
