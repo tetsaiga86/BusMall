@@ -102,42 +102,27 @@ function renderImage(index){
   return '<img src=' + pic[index].path + ' id="' + pic[index].id + '" />';
 }
 
-var resultsButton = document.getElementById('results-button');
-var resultsTable = document.getElementById('results-table');
-resultsButton.addEventListener('click', showResults);
-
-function showResults() {
-  resultsTable.innerHTML = '';
-  for (var i = 0; i < pic.length; i++) {
-    showResultRow(i);
-  }
-}
-
-function showResultRow(rowIndex){
-  var tr = document.createElement('tr');
-  var picName = document.createElement('td');
-  var clicks = document.createElement('td');
-  var shown = document.createElement('td');
-  picName.textContent = pic[rowIndex].picName;
-  clicks.textContent = pic[rowIndex].counterClick;
-  shown.textContent = pic[rowIndex].counterAppear;
-  tr.appendChild(picName);
-  tr.appendChild(clicks);
-  tr.appendChild(shown);
-  resultsTable.appendChild(tr);
-}
-
-//   for (var i = 0; i < store.hourlyCookies.length; i++) {
-//     var td = document.createElement('td');
-//     td.textContent = store.hourlyCookies[i];
-//     tr.appendChild(td);
-//   };
-//   var total = document.createElement('td');
-//   total.textContent = store.dailyTotal;
-//   tr.appendChild(total);
-//   if(replace){
-//     appendRows.replaceChild(tr,replace);
-//   }else{
-//     appendRows.appendChild(tr);
+// var resultsButton = document.getElementById('results-button');
+// var resultsTable = document.getElementById('results-table');
+// resultsButton.addEventListener('click', showResults);
+//
+// function showResults() {
+//   resultsTable.innerHTML = '';
+//   for (var i = 0; i < pic.length; i++) {
+//     showResultRow(i);
 //   }
+// }
+//
+// function showResultRow(rowIndex){
+//   var tr = document.createElement('tr');
+//   var picName = document.createElement('td');
+//   var clicks = document.createElement('td');
+//   var shown = document.createElement('td');
+//   picName.textContent = pic[rowIndex].picName;
+//   clicks.textContent = pic[rowIndex].counterClick;
+//   shown.textContent = pic[rowIndex].counterAppear;
+//   tr.appendChild(picName);
+//   tr.appendChild(clicks);
+//   tr.appendChild(shown);
+//   resultsTable.appendChild(tr);
 // }
