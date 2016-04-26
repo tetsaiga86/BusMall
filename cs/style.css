@@ -1,0 +1,18 @@
+/*li{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  max-width: 10%;
+  max-height: 10%;
+}*/
+
+li{
+  display: inline-flex;
+  padding-left: 10%;
+  align-items: center;
+}
+
+img{
+  width: 300px;
+  height: 300px;
+}
