@@ -19,6 +19,5 @@ img{
 
 canvas{
   border-style: solid;
-  width: 90%;
-  height: 10%;
+  max-height: 500px;
 }

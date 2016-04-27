@@ -1,4 +1,4 @@
-// this is the js for 1.02 chart.js
+// this is the js for 2.01 chart.js
 var pic = [];
 var appendImg = document.getElementById('append-img');
 var appendImg2 = document.getElementById('append-img2');
@@ -119,9 +119,7 @@ function showResults() {
   var canvas = document.createElement('canvas');
   canvas.setAttribute('id', 'results-chart');
   chartContainer.appendChild(canvas);
-  console.log(canvas);
   var ctx = canvas.getContext('2d');
-  console.log(ctx);
   var data = {
     labels: names,
     options: responsiveness = true,
@@ -146,8 +144,10 @@ function showResults() {
       }
     ]
   };
-  console.log(data);
-  var myBarChart = new Chart(ctx).Bar(data);
+  var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+  });
 }
 
 var names = [];
