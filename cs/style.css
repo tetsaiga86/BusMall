@@ -17,7 +17,14 @@ img{
   height: 300px;
 }
 
-canvas{
+#results{
   border-style: solid;
-  max-height: 500px;
+  /*height: 550px;
+  width: 1000px;*/
+  margin: 10px 20%;
 }
+
+/*canvas{
+  height: 400px;
+  width: 900px;
+}*/
