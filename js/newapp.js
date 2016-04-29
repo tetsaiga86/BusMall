@@ -1,4 +1,14 @@
-// this is the js for 1.02 chart.js
+// this is the js for 2.01 chart.js
+// if (localStorage.nameArray) {
+//   var parsedNameArray = JSON.parse(localStorage.nameArray);
+//   names = parsedNameArray;
+//   var parsedChoiceArray = JSON.parse(localStorage.nameChoice);
+//   choice = parsedChoiceArray;
+//   var parsedClickedArray = JSON.parse(localStorage.nameClicked);
+//   clicked = parsedClickedArray;
+//   getNumbers();
+// }
+// put if else here if chart already exists
 var pic = [];
 var appendImg = document.getElementById('append-img');
 var appendImg2 = document.getElementById('append-img2');
@@ -107,50 +117,82 @@ var resultsButton = document.getElementById('results-button');
 var chartContainer = document.getElementById('results');
 
 resultsButton.addEventListener('click', showResults);
+
 var clicked = [];
+
 var choice = [];
 
-function showResults() {
+// var chartDrawn = false;
+
+var names = [];
+function getNumbers(){
   for (var i = 0; i < pic.length; i++) {
+    names.push(pic[i].picName);
     clicked.push(pic[i].counterClick);
     choice.push(pic[i].counterAppear);
   }
+}
+var ctx = results.getContext('2d');
 
-  var canvas = document.createElement('canvas');
-  canvas.setAttribute('id', 'results-chart');
-  chartContainer.appendChild(canvas);
-  console.log(canvas);
-  var ctx = canvas.getContext('2d');
-  console.log(ctx);
-  var data = {
-    labels: names,
-    options: responsiveness = true,
-    datasets: [
-      {
-        label: 'Times a choice was picked',
-        backgroundColor: 'rgb(36, 231, 238)',
-        borderColor: 'rgb(0, 10, 124)',
-        borderWidth: 1,
-        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-        hoverBorderColor: 'rgba(255,99,132,1)',
-        data: clicked
-      },
-      {
-        label: 'Times a choice was given',
-        backgroundColor: 'rgba(54,162,235,0.2)',
-        borderColor: 'rgba(54,162,235,1)',
-        borderWidth: 1,
-        hoverBackgroundColor: 'rgba(54,162,235,0.4)',
-        hoverBorderColor: 'rgba(54,162,235,1)',
-        data: choice
+var data = {
+  labels: names,
+  datasets: [
+    {
+      label: 'Times a choice was picked',
+      backgroundColor: 'rgb(36, 231, 238)',
+      borderColor: 'rgb(0, 10, 124)',
+      borderWidth: 1,
+      hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+      hoverBorderColor: 'rgba(255,99,132,1)',
+      data: clicked
+    },
+    {
+      label: 'Times a choice was given',
+      backgroundColor: 'rgba(54,162,235,0.2)',
+      borderColor: 'rgba(54,162,235,1)',
+      borderWidth: 1,
+      hoverBackgroundColor: 'rgba(54,162,235,0.4)',
+      hoverBorderColor: 'rgba(54,162,235,1)',
+      data: choice
+    }
+  ]
+};
+function showResults() {
+  if (localStorage.picArray = false){
+    clicked = [];
+    choice = [];
+    names = [];
+  }
+  getNumbers();
+  document.getElementById('results').hidden = false;
+  // var canvas = document.createElement('canvas');
+  // canvas.setAttribute('id', 'results-chart');
+  // chartContainer.appendChild(canvas);
+  var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: {
+      responsive: false,
+      scales: {
+        yAxes: [{
+          type: 'linear',
+          ticks:{
+            beginAtZero: true,
+            stepSize: 1
+          }
+        }]
       }
-    ]
-  };
-  console.log(data);
-  var myBarChart = new Chart(ctx).Bar(data);
+    }
+  });
+  // myBarChart.update();
+  // localStorage.setItem('nameArray', JSON.stringify(names));
+  // localStorage.setItem('nameChoice', JSON.stringify(choice));
+  // localStorage.setItem('nameClicked', JSON.stringify(clicked));
+  localStorage.setItem('picArray', JSON.stringify(pic));
 }
 
-var names = [];
-for (var i = 0; i < pic.length; i++) {
-  names.push(pic[i].picName);
-};
+(function fuckYou (){
+  if (localStorage.picArray) {
+    var parsedPicArray = JSON.parse(localStorage.picArray);
+    pic = parsedPicArray;
+  }})();

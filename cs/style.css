@@ -16,3 +16,15 @@ img{
   width: 300px;
   height: 300px;
 }
+
+#results{
+  border-style: solid;
+  /*height: 550px;
+  width: 1000px;*/
+  margin: 10px 20%;
+}
+
+/*canvas{
+  height: 400px;
+  width: 900px;
+}*/
